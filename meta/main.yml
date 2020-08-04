@@ -2,9 +2,9 @@
 # Role dependencies
 
 galaxy_info:
-  role_name: role
-  author: author name
-  description: role description
+  role_name: check_mk_agent_jstat
+  author: Juan Antonio Valiño García
+  description: Setup Check_MK plugin to check java process memory
   company: AMTEGA - Xunta de Galicia
   license: GPLv3 or EUPL
   min_ansible_version: 2.9
@@ -17,6 +17,32 @@ galaxy_info:
       versions:
         - 29
         - 30
-  galaxy_tags: []
+  galaxy_tags:
+    - system
+    - monitoring
+    - checkmk
+    - java
+    - heap
+    - perm
+    - meta
+    - memory
 
-dependencies: []
+dependencies:
+  - role: amtega.check_platform
+    vars:
+      check_platform_distributions:
+        centos: 6
+        fedora: 29
+        redhat: 6
+
+  - role: amtega.packages
+    vars:
+      packages_os:
+        all:
+          6:
+            procps: present
+          7:
+            procps-ng: present
+        fedora:
+          all:
+            procps-ng: present

@@ -4,4 +4,25 @@
   hosts: molecule_hosts
   gather_facts: no
   tasks:
-    - debug: msg="Verify to be done"
+    - name: Search Check_MK agent local dir
+      shell: >-
+        set -o pipefail ;
+        /usr/bin/check_mk_agent | grep '[L]ocalDirectory' | awk {'print $2'}
+      args:
+        warn: no
+      changed_when: false
+      register: search_local_dir_result
+
+    - name: Test jstat check
+      command: >-
+        {{ search_local_dir_result.stdout_lines[0]
+           + "/"
+           + check_mk_agent_jstat_seconds | string
+           + "/"
+           + check_mk_agent_jstat_file }}
+      changed_when: no
+      register: check_result
+
+    - name: Assert check output is ok
+      assert:
+        that: check_result.stdout_lines | length == 0

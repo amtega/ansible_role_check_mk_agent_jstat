@@ -61,6 +61,9 @@ provisioner:
     hosts:
       molecule_hosts:
         vars:
+          check_mk_agent_jstat_process_regex: "missing-process"
+          check_mk_agent_jstat_seconds: 120
+          check_mk_agent_jstat_file: jstat
       molecule_hosts_fedora:
         vars:
           ansible_python_interpreter: /usr/bin/python3
