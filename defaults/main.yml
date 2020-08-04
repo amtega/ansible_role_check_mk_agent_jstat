@@ -1,2 +1,38 @@
 ---
 # Role default lower priority variables
+
+# Java home
+
+check_mk_agent_jstat_java_home: /usr/lib/jvm/java-openjdk
+
+# User that owns the java process to check
+
+check_mk_agent_jstat_process_owner: root
+
+# Indicate if the process to check is a child from another one
+
+check_mk_agent_jstat_process_is_child: no
+
+# Regular expression to search for the process
+
+check_mk_agent_jstat_process_regex: ""
+
+# Check interval in seconds
+
+check_mk_agent_jstat_seconds: 120
+
+# Memory usage percentage to trigger warning
+
+check_mk_agent_jstat_warning_level: 80
+
+# Memory usage percentage to trigger critical
+
+check_mk_agent_jstat_critical_level: 95
+
+# Check label to use
+
+check_mk_agent_jstat_label: jstat
+
+# Check script file name:
+
+check_mk_agent_jstat_file: jstat
