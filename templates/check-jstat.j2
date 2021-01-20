@@ -10,7 +10,7 @@ cs={{ check_mk_agent_jstat_critical_level }}
 # Get proceses
 ps_info=$(mktemp)
 {% if check_mk_agent_jstat_process_regex | length > 0 %}
-{% set regex_filter = ' | grep "{{ check_mk_agent_jstat_process_regex }}"' %}
+{% set regex_filter = ' | grep "' + check_mk_agent_jstat_process_regex + '"' %}
 {% else %}
 {% set regex_filter = '' %}
 {% endif %}
