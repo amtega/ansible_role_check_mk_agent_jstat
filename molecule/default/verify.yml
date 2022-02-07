@@ -6,6 +6,7 @@
   tasks:
     - name: Search Check_MK agent local dir
       shell: >-
+        set -o pipefail ;
         /usr/bin/check_mk_agent | grep '[L]ocalDirectory' | awk {'print $2'}
       args:
         warn: no
