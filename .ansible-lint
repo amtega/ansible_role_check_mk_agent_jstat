@@ -2,4 +2,5 @@
 
 exclude_paths:
   - meta
-  - molecule/default/prepare.yml
+warn_list:
+  - risky-shell-pipe  
